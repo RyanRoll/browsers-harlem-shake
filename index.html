@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8" />
+<meta name="keywords" content="browsers harlem shake, harlem shake" />
+<meta name="description" content="browsers harlem shake" />
+<meta property="og:site_name" content="Browsers Harlem Shake" />
+<meta property="og:type" content="web" />
+<meta property="og:title" content="Browsers Harlem Shake" />
+<meta property="og:image" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width" />
 <title>Browsers Harlem Shake</title>
 <link href='http://fonts.googleapis.com/css?family=Yesteryear' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="assets/css/animate.css"/>
@@ -27,13 +36,14 @@
 	</div>
 </div>
 <div id="footer"></div>
-<audio id="music">
+
+<!-- <audio id="music" prelaod="auto">
 	<source src="assets/audio/harlem_shake.ogg" type="audio/ogg">
 	<source src="assets/audio/harlem_shake.mp3" type="audio/mpeg">
-</audio>
+</audio> -->
 
 <div id="footer">
-<iframe src="http://www.facebook.com/plugins/like.php?href=YOUR_URL" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"></iframe>
+<iframe src="http://www.facebook.com/plugins/like.php?href=http://rollroll.github.com/browsers-harlem-shake/" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"></iframe>
 </div>
 
 
@@ -41,8 +51,8 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
 	var 
-		audio = document.getElementById('music'),
 		isie10 = isIE10(),
+		audio = new Audio(),		
 		$playBtn = $('#playBtn'),
 		$browsers = $('#browsers'),
 		$question = $('#question'),
@@ -56,14 +66,23 @@
 
 	( isie10 ) && ( shakeDoms.ie = $('#ie') );
 
-	$playBtn.on('click', play);
+	// load auido
+	audio.src = 'assets/audio/harlem_shake' + ( isie10? '.mp3' : '.ogg' );
+	audio.preload = "auto";
+	audio.addEventListener('loadeddata', function() {
+		$playBtn.on('click', play);
+	}, false);
+	audio.addEventListener('play', startShake, false);
 
+	
 	function play() {
 		$playBtn.css('visibility', 'hidden');
 		$browsers.removeClass('shake');
 		$question.hide();
 		audio.play();
-	
+	}
+
+	function startShake() {
 		// start
 		setTimeout(function() {
 			shakeDoms.chrome.addClass( 'animation-start' );
@@ -73,19 +92,19 @@
 		setTimeout(function() {
 			$browsers.addClass('shake');
 			shakeDoms.chrome.removeClass( 'animation-start' );
-			shake();
+			shakeObjects();
 		}, 15500);
 
 		// stop
 		setTimeout(function() {
-			shake( true );
+			shakeObjects( true );
 			$playBtn.css('visibility', 'visible');
 
 			( ! isie10 ) && $question.show();
 		}, 30000);
 	}
 
-	function shake( stop ) {
+	function shakeObjects( stop ) {
 		var action = ( stop )? 'removeClass' : 'addClass';
 		$.each(shakeDoms, function(key, $dom) {
 			$dom[ action ]( 'animation-' + key );
