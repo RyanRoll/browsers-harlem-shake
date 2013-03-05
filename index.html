@@ -65,11 +65,12 @@
 
 	( isie10 ) && ( shakeDoms.ie = $('#ie') );
 
+	// audio.onplay = startShake; // doesn't work on chrome
+	$( audio ).on('play', startShake);
+
 	$(function() {
 		$playBtn.on('click', play);
-		// audio.onplay = startShake; // doesn't work on chrome
-		$( audio ).on('play', startShake);
-	})
+	});
 
 
 	function play() {
