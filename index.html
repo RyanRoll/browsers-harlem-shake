@@ -66,13 +66,16 @@
 	( isie10 ) && ( shakeDoms.ie = $('#ie') );
 
 	$playBtn.on('click', play);
+	audio.onplay = startShake;
 
 	function play() {
 		$playBtn.css('visibility', 'hidden');
 		$browsers.removeClass('shake');
 		$question.hide();
 		audio.play();
-	
+	}
+
+	function startShake() {
 		// start
 		setTimeout(function() {
 			shakeDoms.chrome.addClass( 'animation-start' );
@@ -82,7 +85,7 @@
 		setTimeout(function() {
 			$browsers.addClass('shake');
 			shakeDoms.chrome.removeClass( 'animation-start' );
-			shake();
+			shakeObjects();
 		}, 15500);
 
 		// stop
@@ -94,7 +97,7 @@
 		}, 30000);
 	}
 
-	function shake( stop ) {
+	function shakeObjects( stop ) {
 		var action = ( stop )? 'removeClass' : 'addClass';
 		$.each(shakeDoms, function(key, $dom) {
 			$dom[ action ]( 'animation-' + key );
