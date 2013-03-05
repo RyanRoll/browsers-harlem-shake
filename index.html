@@ -1,74 +1,104 @@
 <!DOCTYPE html>
 <html>
+<head>
+<title>Browsers Harlem Shake</title>
+<link href='http://fonts.googleapis.com/css?family=Yesteryear' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="assets/css/animate.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/main.css"/>
+</head>
+<body>
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Browsers-harlem-shake : harlem shake browsers version, just funny" />
+<div id="wrap">
+	<div id="container">
+		<div id="caption">
+			<h1 id="title" class="animated">Browsers Harlem Shake</h1>
+			<img id="playBtn" src="assets/img/play.png">
+		</div>
+		<ul id="browsers" class="browsers">
+			<li><img id="safari" class="browserIcon animated" src="assets/img/safari.png"></li>
+			<li><img id="firefox" class="browserIcon animated" src="assets/img/firefox.png"></li>
+			<li><img id="chrome" class="browserIcon animated" src="assets/img/chrome.png"></li>
+			<li><img id="opera" class="browserIcon animated" src="assets/img/opera.png"></li>
+			<li id="iebox">
+				<img id="question" src="assets/img/question.png">
+				<img id="ie" class="browserIcon animated" src="assets/img/ie.png">
+			</li>
+		</ul>
+	</div>
+</div>
+<div id="footer"></div>
+<audio id="music">
+	<source src="assets/audio/harlem_shake.ogg" type="audio/ogg">
+	<source src="assets/audio/harlem_shake.mp3" type="audio/mpeg">
+</audio>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+<div id="footer">
+<iframe src="http://www.facebook.com/plugins/like.php?href=YOUR_URL" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"></iframe>
+</div>
 
-    <title>Browsers-harlem-shake</title>
-  </head>
 
-  <body>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/rollRoll/browsers-harlem-shake">View on GitHub</a>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+	var 
+		audio = document.getElementById('music'),
+		isie10 = isIE10(),
+		$playBtn = $('#playBtn'),
+		$browsers = $('#browsers'),
+		$question = $('#question'),
+		shakeDoms = {
+			title: $('#title'),
+			chrome: $('#chrome'),
+			firefox: $('#firefox'),
+			safari: $('#safari'),
+			opera: $('#opera')
+		};
 
-          <h1 id="project_title">Browsers-harlem-shake</h1>
-          <h2 id="project_tagline">harlem shake browsers version, just funny</h2>
+	( isie10 ) && ( shakeDoms.ie = $('#ie') );
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/rollRoll/browsers-harlem-shake/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/rollRoll/browsers-harlem-shake/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+	$playBtn.on('click', play);
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>Welcome to GitHub Pages.</h3>
+	function play() {
+		$playBtn.css('visibility', 'hidden');
+		$browsers.removeClass('shake');
+		$question.hide();
+		audio.play();
+	
+		// start
+		setTimeout(function() {
+			shakeDoms.chrome.addClass( 'animation-start' );
+		}, 2000);
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+		// shake
+		setTimeout(function() {
+			$browsers.addClass('shake');
+			shakeDoms.chrome.removeClass( 'animation-start' );
+			shake();
+		}, 15500);
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+		// stop
+		setTimeout(function() {
+			shake( true );
+			$playBtn.css('visibility', 'visible');
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+			( ! isie10 ) && $question.show();
+		}, 30000);
+	}
 
-<h3>Designer Templates</h3>
+	function shake( stop ) {
+		var action = ( stop )? 'removeClass' : 'addClass';
+		$.each(shakeDoms, function(key, $dom) {
+			$dom[ action ]( 'animation-' + key );
+		});
+	}
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+	function isIE10() {
+		var self = this.isIE10;
+		self.version = ( self.version !== undefined )? self.version
+			: /Mozilla\/5.0 \(compatible\; MSIE 10(.+)/.test( window.navigator.userAgent );
+		return self.version;
+	}
 
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Browsers-harlem-shake maintained by <a href="https://github.com/rollRoll">rollRoll</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+</script>
+</body>
 </html>

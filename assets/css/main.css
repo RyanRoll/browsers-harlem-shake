@@ -1,0 +1,112 @@
+body {
+	padding: 0;
+	margin: 0;
+	position: relative;
+	font-size: 13px;
+	font-family: 'Yesteryear', cursive;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+ul, li, figure, menu {
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+}
+
+a {
+	cursor: pointer;
+	outline: none;
+	
+	label {
+		cursor: pointer;
+	}
+
+	&:active, &:focus {
+		outline: none;
+	}
+}
+
+i {
+	cursor: default;
+}
+
+.clearfix {
+	display: block;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.browserIcon {
+	width: 128px;
+	height: 128px;
+}
+
+#container {
+	left: 50%;
+	margin: -230px auto 0 -530px;
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	width: 1060px;
+}
+
+#caption {
+	width: 100%;
+	margin-bottom: 50px;
+}
+
+#title {
+	display: inline-block;
+	font-size: 72px;
+	margin: 0;
+}
+
+#playBtn {
+	cursor: pointer;
+	opacity: 0.5;
+	margin-left: 10px;
+}
+
+#playBtn:hover {
+	opacity: 1;
+}
+
+.browsers>li {
+	display: inline-block;
+	margin-right: 40px;
+	position: relative;
+}
+
+.shake>li {
+	margin-right: 60px;
+}
+
+
+#question {
+	float: left;
+	left: -30px;
+	position: absolute;
+	display: none;
+}
+
+#footer {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 20px;
+	padding: 10px;
+	background: #eee;
+	background: linear-gradient(#eee, #ddd);
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
