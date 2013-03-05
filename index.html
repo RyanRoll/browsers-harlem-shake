@@ -68,13 +68,13 @@
 
 	// load auido
 	audio.src = 'assets/audio/harlem_shake' + ( isie10? '.mp3' : '.ogg' );
-    audio.preload = "auto";
-    audio.addEventListener('loadeddata', function() {
+	audio.preload = "auto";
+	audio.addEventListener('loadeddata', function() {
 		$playBtn.on('click', play);
 	}, false);
 	audio.addEventListener('play', startShake, false);
 
-	
+
 	function play() {
 		$playBtn.css('visibility', 'hidden');
 		$browsers.removeClass('shake');
