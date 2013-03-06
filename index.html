@@ -74,11 +74,12 @@
 	}, false);
 	audio.addEventListener('play', startShake, false);
 
-	
+
 	function play() {
 		$playBtn.css('visibility', 'hidden');
 		$browsers.removeClass('shake');
 		$question.hide();
+		resetObjects();
 		audio.play();
 	}
 
@@ -97,17 +98,28 @@
 
 		// stop
 		setTimeout(function() {
-			shakeObjects( true );
+			stopObjectsShake();
 			$playBtn.css('visibility', 'visible');
 
 			( ! isie10 ) && $question.show();
 		}, 30000);
 	}
 
-	function shakeObjects( stop ) {
-		var action = ( stop )? 'removeClass' : 'addClass';
+	function shakeObjects() {
 		$.each(shakeDoms, function(key, $dom) {
-			$dom[ action ]( 'animation-' + key );
+			$dom.addClass( 'animation-' + key );
+		});
+	}
+
+	function stopObjectsShake() {
+		$.each(shakeDoms, function(key, $dom) {
+			$dom.addClass('animated-stop');
+		});
+	}
+
+	function resetObjects() {
+		$.each(shakeDoms, function(key, $dom) {
+			$dom.removeClass( 'animated-stop animation-' + key );
 		});
 	}
 
