@@ -110,3 +110,9 @@ i {
 	background: linear-gradient(#eee, #ddd);
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
 }
+
+#githubLink {
+	color: #222222;
+	float: right;
+	font-family: arial;
+}
