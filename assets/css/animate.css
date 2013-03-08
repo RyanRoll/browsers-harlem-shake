@@ -3,7 +3,6 @@
 	-o-animation-fill-mode: both;
 	animation-fill-mode: both;
 	
-
 	-webkit-animation-iteration-count: infinite;
 	-o-animation-iteration-count: infinite;
 	animation-iteration-count: infinite;
@@ -468,6 +467,117 @@
 	-webkit-animation-name: title;
 	-o-animation-name: title;
 	animation-name: title;
+}
+
+@-webkit-keyframes ribbon {
+	0% {
+		right: 5%;
+		-webkit-transform: translateY(0px) rotateZ(0deg);
+	}
+
+	20% {
+		right: 20%;
+		-webkit-transform: translateY(-30px) rotateZ(-45deg);
+	}
+
+	40% {
+		right: 40%;
+		-webkit-transform: translateY(-70px) rotateZ(-90deg);
+	}
+
+	60% {
+		right: 60%;
+		-webkit-transform: translateY(-110px) rotateZ(-180deg);
+	}
+
+	80% {
+		right: 80%;
+		-webkit-transform: translateY(-70px) rotateZ(-270deg);
+	}
+
+	100% {
+		right: 90%;
+		-webkit-transform: translateY(-30px) rotateZ(-360deg);
+	}
+}
+
+@-o-keyframes ribbon {
+	0% {
+		right: 5%;
+		-o-transform: translateY(0px) rotateZ(0deg);
+	}
+
+	20% {
+		right: 20%;
+		-o-transform: translateY(-30px) rotateZ(-45deg);
+	}
+
+	40% {
+		right: 40%;
+		-o-transform: translateY(-70px) rotateZ(-90deg);
+	}
+
+	60% {
+		right: 60%;
+		-o-transform: translateY(-110px) rotateZ(-180deg);
+	}
+
+	80% {
+		right: 80%;
+		-o-transform: translateY(-70px) rotateZ(-270deg);
+	}
+
+	100% {
+		right: 90%;
+		-o-transform: translateY(-30px) rotateZ(-360deg);
+	}
+}
+
+
+@keyframes ribbon {
+	0% {
+		right: 5%;
+		transform: translateY(0px) rotateZ(0deg);
+	}
+
+	20% {
+		right: 20%;
+		transform: translateY(-30px) rotateZ(-45deg);
+	}
+
+	40% {
+		right: 40%;
+		transform: translateY(-70px) rotateZ(-90deg);
+	}
+
+	60% {
+		right: 60%;
+		transform: translateY(-110px) rotateZ(-180deg);
+	}
+
+	80% {
+		right: 80%;
+		transform: translateY(-70px) rotateZ(-270deg);
+	}
+
+	100% {
+		right: 90%;
+		transform: translateY(-30px) rotateZ(-360deg);
+	}
+}
+
+.animation-ribbon {
+	-webkit-animation-name: ribbon;
+	-o-animation-name: ribbon;
+	animation-name: ribbon;
+
+	-webkit-animation-direction: alternate;
+	-o-animation-direction: alternate;
+	animation-direction: alternate;
+
+	-webkit-animation-duration: .5s;
+	-o-animation-duration: .5s;
+	animation-duration: .5s;
 }
 
 .animated-stop {
